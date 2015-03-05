@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+# vim: set syntax=ruby
+$:.unshift(File.expand_path('../../lib', __FILE__))
+
+require 'rubygems'
+require 'dice_bag'
+require 'thor'
+
+class App < Thor
+  desc 'roll DICE_NOTATION TIMES', 'Roll a dice a specific number of times'
+  method_option :verbose, aliases: '-v', default: false, desc: 'Display calculations'
+  method_option :modifier, aliases: '-m', desc: 'Apply a modifier to the result'
+  def roll(notation, rolls=1)
+    bag = DiceBag::Bag.new(notation)
+    results = rolls.to_i.times.collect do
+      counter = DiceBag::Counter.new(bag.dump, modifier: options[:modifier])
+      output_method = options[:verbose] ? :verbose : :to_s
+      counter.send(output_method)
+    end
+    results.each { |result| say(result) }
+  end  
+end
+
+App.start
