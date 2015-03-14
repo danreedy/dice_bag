@@ -21,34 +21,34 @@ Or install it yourself as:
 
 Tell the dice bag what kind of and how many dice you are rolling and it'll give you the results.
 
-    $ roll d6 3
+    $ dice-bag roll d6 3
     4 3 5
 
-    $ roll 3d6
+    $ dice-bag roll 3d6
     11
 
 ## Options
 
 *--verbose (-v)*: Shows the calculation for multiple dice
 
-    $ roll 3d6 -v
+    $ dice-bag roll 3d6 -v
     9 (3+5+1)
 
-    $ roll 3d6 2 -v
+    $ dice-bag roll 3d6 2 -v
     11 (4+4+3)
     14 (6+3+5)
 
 *--modifier (-m)*: Adds a modifier to the calculated values
 
-    $ roll d4 -m 4
+    $ dice-bag roll d4 -m 4
     6 (2+4)
 
-    $ roll 2d6 -m 3
+    $ dice-bag roll 2d6 -m 3
     11 (8+3)
 
 These options can be combined
 
-    $ roll 2d10 -m 5 -v
+    $ dice-bag roll 2d10 -m 5 -v
     17 (5+7+5)
 
 
