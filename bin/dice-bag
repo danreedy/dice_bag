@@ -10,15 +10,25 @@ class App < Thor
   desc 'roll DICE_NOTATION TIMES', 'Roll a dice a specific number of times'
   method_option :verbose, aliases: '-v', default: false, desc: 'Display calculations'
   method_option :modifier, aliases: '-m', desc: 'Apply a modifier to the result'
+  method_option :seed, aliases: '-s', desc: 'Provide a random seed, allowing for results to be recreated'
   def roll(notation, rolls=1)
+    seed = options[:seed] || rand(1_000_000_000)
     bag = DiceBag::Bag.new(notation)
     results = rolls.to_i.times.collect do
-      counter = DiceBag::Counter.new(bag.dump, modifier: options[:modifier])
+      counter = DiceBag::Counter.new(bag.dump(seed), modifier: options[:modifier])
       output_method = options[:verbose] ? :verbose : :to_s
       counter.send(output_method)
     end
+    if options[:verbose]
+      say "This bag #{bag.describe}"
+      say "-"*10
+    end
     results.each { |result| say(result) }
-  end  
+    if options[:verbose]
+      say "-"*10
+      say "Seed #: #{seed}"
+    end
+  end
 end
 
 App.start

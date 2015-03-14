@@ -14,6 +14,11 @@ RSpec.describe DiceBag::Dice, 'default - 6 sides' do
       expect(result).to be >= 1
       expect(result).to be <= 6
     end
+    it 'returns the same value if a seed is provided' do
+      seed = 1234
+      second_dice = DiceBag::Dice.new
+      expect(subject.roll(seed)).to eq second_dice.roll(seed)
+    end
   end
   context "#rolls" do
     it 'returns an array of values between 1 and 6' do

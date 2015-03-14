@@ -9,13 +9,18 @@ module DiceBag
       @sides = sides
     end
 
-    def roll
-      rand(@sides)+1
+    def roll(seed=nil)
+      randomizer(seed).rand(1..@sides)
     end
 
     def rolls(number_of_times)
       raise ArgumentError, 'number of times to roll must be a positive integer' if number_of_times < 0
       number_of_times.times.collect { roll }
+    end
+
+    private
+    def randomizer(seed)
+      @randomizer ||= (seed.nil? ? Random.new : Random.new(seed))
     end
   end
 end
