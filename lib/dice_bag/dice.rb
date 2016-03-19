@@ -14,7 +14,8 @@ module DiceBag
 
     def initialize(sides=DEFAULT_SIDES)
       sides = sides.to_i
-      raise ArgumentError, 'Dice must have a positive integer number of sides' if sides <= 0
+      raise DiceBag::InvalidSidesError, 'Dice must have a positive integer number of sides' if sides <= 0
+      raise DiceBag::TooLargeError, 'Dice has too many sides' if sides > 1000
       @sides = sides
     end
 
@@ -23,7 +24,7 @@ module DiceBag
     end
 
     def rolls(number_of_times)
-      raise ArgumentError, 'number of times to roll must be a positive integer' if number_of_times < 0
+      raise DiceBag::InvalidSidesError, 'number of times to roll must be a positive integer' if number_of_times < 0
       number_of_times.times.collect { roll }
     end
 
