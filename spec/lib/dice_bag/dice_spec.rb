@@ -26,7 +26,7 @@ RSpec.describe DiceBag::Dice, 'default - 6 sides' do
       expect(results.size).to be 3
     end
     it 'raises an ArgumentError on a negative value' do
-      expect { subject.rolls(-3) }.to raise_error(ArgumentError, 'number of times to roll must be a positive integer')
+      expect { subject.rolls(-3) }.to raise_error(DiceBag::InvalidSidesError, 'number of times to roll must be a positive integer')
     end
   end
 end
@@ -34,7 +34,12 @@ end
 RSpec.describe DiceBag::Dice, 'invalid dice' do
   context 'Invalid Sides' do
     it 'raises an ArgumentError on a negative value' do
-      expect { DiceBag::Dice.new(-3) }.to raise_error(ArgumentError, 'Dice must have a positive integer number of sides')
+      expect { DiceBag::Dice.new(-3) }.to raise_error(DiceBag::InvalidSidesError, 'Dice must have a positive integer number of sides')
+    end
+  end
+  context 'Too Large' do
+    it 'raises an OutOfBoundsError on a value greater than 1000' do
+      expect { DiceBag::Dice.new(1001) }.to raise_error(DiceBag::TooLargeError, 'Dice has too many sides')
     end
   end
 end

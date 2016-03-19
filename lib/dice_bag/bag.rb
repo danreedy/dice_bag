@@ -1,10 +1,11 @@
 module DiceBag
   class Bag
     attr_reader :notation
-    def initialize(dice_type)
+    def initialize(dice_type, max_rolls=100)
       @drop_low = false
       @drop_high = false
       @notation = dice_type
+      @max_rolls = max_rolls
       parse dice_type
     end
 
@@ -39,14 +40,12 @@ module DiceBag
     private
     def parse(dice_type)
       recipe = /(?<quantity>\d*)d(?<sides>\d+)-*(?<drop>[LH])*/.match(dice_type)
-      raise ArgumentError, 'Invalid dice notation' if recipe.nil?
+      raise DiceBag::InvalidNotationError, 'Invalid dice notation' if recipe.nil?
       @quantity = recipe[:quantity].empty? ? 1 : recipe[:quantity].to_i
+      raise DiceBag::TooManyRollsError, 'Too many rolls' if @quantity > @max_rolls
       @sides = recipe[:sides].to_i
       @drop_low = recipe[:drop].eql?("L")
       @drop_high = recipe[:drop].eql?("H")
-      # @quantity.times do
-      #   add_dice DiceBag::Dice.new(recipe[:sides])
-      # end
       fill_bag(@quantity, @sides)
     end
 

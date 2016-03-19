@@ -44,7 +44,13 @@ RSpec.describe DiceBag::Bag, 'containing a single, six-sided dice' do
 end
 
 RSpec.describe DiceBag::Bag, 'Invalid notation' do
-  it 'raises an ArgumentError' do
-    expect { DiceBag::Bag.new("bad notation") }.to raise_error(ArgumentError, 'Invalid dice notation')
+  it 'raises an InvalidNotationError' do
+    expect { DiceBag::Bag.new("bad notation") }.to raise_error(DiceBag::InvalidNotationError, 'Invalid dice notation')
+  end
+end
+
+RSpec.describe DiceBag::Bag, 'Too many rolls' do
+  it 'raises a TooManyRollsError' do
+    expect { DiceBag::Bag.new("101d6") }.to raise_error(DiceBag::TooManyRollsError, 'Too many rolls')
   end
 end
