@@ -6,7 +6,11 @@ module DiceBag
     end
 
     def to_s
-      @values.inject(&:+).to_s
+      total.to_s
+    end
+
+    def total
+      @values.inject(&:+)
     end
 
     def verbose
