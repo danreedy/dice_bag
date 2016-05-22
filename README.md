@@ -27,6 +27,18 @@ Tell the dice bag what kind of and how many dice you are rolling and it'll give 
     $ dice-bag roll 3d6
     11
 
+## Notation
+
+**Basic:** `d{sides}` e.g. `d20`, `d8`
+
+**Multiple Dice**: `{numberOfDice}d{sides}` e.g. `2d8`, `4d6`
+
+**With Modifier**: `{numberOfDice}d{sides}+{modifier}` or `{numberOfDice}d{sides}-{modifier}` e.g. `d20+5`, `2d8+5`
+
+**Drop Lowest Number**: `{numberOfDice}d{sides}-L` e.g. `4d6-L`
+
+**Drop Higest Number**: `{numberOfDice}d{sides}-H` e.g. `6d6-H`
+
 ## Options
 
 *--verbose (-v)*: Shows the calculation for multiple dice
