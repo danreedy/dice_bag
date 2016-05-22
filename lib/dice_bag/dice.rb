@@ -1,15 +1,6 @@
 module DiceBag
   class Dice
     DEFAULT_SIDES = 6
-    DEFAULT_SIZES = %w|
-      d4
-      d6
-      d8
-      d10
-      d12
-      d20
-      d100
-    |
     attr_reader :sides
 
     def initialize(sides=DEFAULT_SIDES)
