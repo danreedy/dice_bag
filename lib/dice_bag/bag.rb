@@ -1,12 +1,13 @@
 module DiceBag
   class Bag
-    attr_reader :notation, :modifier
+    attr_reader :notation, :modifier, :roll_record
     def initialize(dice_type, max_rolls=100)
       @drop_low = false
       @drop_high = false
       @notation = dice_type
       @max_rolls = max_rolls
       @modifier = 0
+      @roll_record = []
       parse dice_type
     end
 
@@ -21,7 +22,9 @@ module DiceBag
     def dump(seed=nil)
       results = @dice.collect.with_index do |dice, index|
         dice_seed = seed.nil? ? nil : seed.to_i + index
-        dice.roll(dice_seed)
+        roll = dice.roll(dice_seed)
+        roll_record << roll
+        roll
       end
       if @drop_low
         results.delete_at(results.find_index(results.min))
