@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://qrng.anu.edu.au/API/jsonI.php?length=1&type=uint8
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      Host:
+      - qrng.anu.edu.au
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 22 May 2016 22:56:36 GMT
+      Server:
+      - Apache
+      Access-Control-Allow-Origin:
+      - "*"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '75'
+      Connection:
+      - close
+      Content-Type:
+      - application/json
+      Content-Language:
+      - en
+    body:
+      encoding: ASCII-8BIT
+      string: '{"type":"uint8","length":1,"data":[194],"success":true}
+
+'
+    http_version: 
+  recorded_at: Sun, 22 May 2016 22:56:38 GMT
+recorded_with: VCR 3.0.3

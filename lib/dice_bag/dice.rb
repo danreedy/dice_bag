@@ -21,7 +21,7 @@ module DiceBag
 
     private
     def randomizer(seed)
-      @randomizer ||= (seed.nil? ? Random.new : Random.new(seed))
+      @randomizer ||= (seed.nil? ? QRandom.new : Random.new(seed))
     end
   end
 end

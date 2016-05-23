@@ -10,8 +10,10 @@ RSpec.describe DiceBag::Bag, 'containing a single, six-sided dice' do
   end
   context '#dump' do
     it 'simulated dumping the dice' do
-      results = subject.dump
-      expect(results).to be_an Array
+      VCR.use_cassette('dice_bag_dump') do
+        results = subject.dump
+        expect(results).to be_an Array
+      end
     end
   end
   context '#roll_times' do
