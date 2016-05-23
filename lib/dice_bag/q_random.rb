@@ -29,9 +29,9 @@ module DiceBag
 
     def upto(max_int)
       @results.each_with_index do |result, i|
-        if result > max_int
+        # if result > max_int
           @results[i] = scale_number(result, max_int)
-        end
+        # end
       end
       self
     end
@@ -72,7 +72,7 @@ module DiceBag
     end
 
     def scale_number(number, max)
-      ((max - 1) * (number)) / (255 - 0) + 1 
+      ((number * max) / 255) + 1
     end
   end
 end
