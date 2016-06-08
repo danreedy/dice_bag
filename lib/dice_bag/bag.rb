@@ -57,7 +57,7 @@ module DiceBag
 
     private
     def parse(dice_type)
-      recipe = /(?<quantity>\d*)d(?<sides>\d+)-*((?<drop>[LH])|(?<neg>\d))*\+*(?<pos>\d)*/.match(dice_type)
+      recipe = /(?<quantity>\d*)d(?<sides>\d+)-*((?<drop>[LH])|(?<neg>\d+))*\+*(?<pos>\d+)*/.match(dice_type)
       raise DiceBag::InvalidNotationError, 'Invalid dice notation' if recipe.nil?
       @quantity = recipe[:quantity].empty? ? 1 : recipe[:quantity].to_i
       raise DiceBag::TooManyRollsError, 'Too many rolls' if @quantity > @max_rolls
