@@ -67,6 +67,10 @@ RSpec.describe DiceBag::Bag, 'containing a single, six-sided dice' do
       it 'has a modifier of 11' do
         expect(subject.modifier).to eq(11)
       end
+      it 'returns 20 when a 9 is rolled' do
+        allow_any_instance_of(DiceBag::Dice).to receive(:roll).and_return(9)
+        expect(subject.roll_once).to eq 21 
+      end
     end
   end
   describe '#describe' do
