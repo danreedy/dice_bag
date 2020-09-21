@@ -69,7 +69,7 @@ RSpec.describe DiceBag::Bag, 'containing a single, six-sided dice' do
       end
       it 'returns 20 when a 9 is rolled' do
         allow_any_instance_of(DiceBag::Dice).to receive(:roll).and_return(9)
-        expect(subject.roll_once).to eq 21 
+        expect(subject.roll_once).to eq 20 
       end
     end
   end
