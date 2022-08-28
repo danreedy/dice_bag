@@ -1,3 +1,3 @@
 module DiceBag
-  VERSION = "1.2.4"
+  VERSION = "2.0"
 end

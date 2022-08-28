@@ -21,6 +21,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 12.3.0"
   spec.add_development_dependency "rspec", "~> 3.2.0"
   spec.add_dependency "thor", "~> 0.19.1"
-  spec.add_dependency "activesupport", '~> 4.2.0'
+  spec.add_dependency "activesupport"
   spec.add_dependency "to_words", '~> 1.1.0'
 end
